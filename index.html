@@ -6,6 +6,7 @@ export default function Home() {
   const productRef = useRef(null);
 
   useEffect(() => setMounted(true), []);
+
   if (!mounted) return null;
 
   const products = [
@@ -19,38 +20,55 @@ export default function Home() {
   };
 
   return (
-    <div className="font-inter bg-no-repeat bg-cover bg-fixed text-gray-800" style={{ backgroundImage: "url('/LAB2.JPG')" }}>
-      <header className="relative h-screen flex items-center justify-center bg-black/60">
-        <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1 }} className="text-center px-4 z-10">
-          <h1 className="text-4xl md:text-6xl font-bold mb-4 text-white">High-Quality API Manufacturing for a Healthier India</h1>
-          <div className="space-x-4">
-            <button onClick={scrollToProducts} className="bg-[#2d2daa] text-white px-6 py-2 rounded shadow hover:scale-105 transition">View Products</button>
-            <button className="bg-white border border-[#2d2daa] text-[#2d2daa] px-6 py-2 rounded shadow hover:scale-105 transition">Contact Us</button>
-          </div>
-        </motion.div>
+    <div className="font-sans text-gray-800 bg-white">
+      <header className="h-screen flex flex-col items-center justify-center bg-[#2d2daa] text-white text-center p-6">
+        <motion.h1
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="text-4xl md:text-5xl font-bold mb-4"
+        >
+          High-Quality API Manufacturing for a Healthier India
+        </motion.h1>
+        <div className="space-x-4">
+          <button
+            onClick={scrollToProducts}
+            className="bg-white text-[#2d2daa] px-5 py-2 rounded font-semibold hover:bg-gray-100"
+          >
+            View Products
+          </button>
+          <button className="border border-white px-5 py-2 rounded hover:bg-white hover:text-[#2d2daa]">
+            Contact Us
+          </button>
+        </div>
       </header>
 
-      <main className="max-w-7xl mx-auto px-6 py-16 bg-white/90 backdrop-blur">
-        <section ref={productRef} className="mb-16">
-          <h2 className="text-3xl font-bold text-center mb-8 text-[#2d2daa]">Our Products</h2>
-          <div className="overflow-x-auto">
-            <table className="min-w-full text-left border">
-              <thead className="bg-[#2d2daa] text-white">
-                <tr><th className="py-2 px-4 border">API Name</th><th className="py-2 px-4 border">CAS No.</th><th className="py-2 px-4 border">Therapeutic Use</th></tr>
-              </thead>
-              <tbody>
-                {products.map(([name, cas, use], i) => (
-                  <tr key={i} className="even:bg-gray-100"><td className="py-2 px-4 border">{name}</td><td className="py-2 px-4 border">{cas}</td><td className="py-2 px-4 border">{use}</td></tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </section>
+      <main ref={productRef} className="max-w-5xl mx-auto p-6">
+        <h2 className="text-3xl font-bold mb-4 text-[#2d2daa] text-center">Our Products</h2>
+        <table className="w-full border border-gray-300 text-left">
+          <thead className="bg-[#2d2daa] text-white">
+            <tr>
+              <th className="p-2 border">API Name</th>
+              <th className="p-2 border">CAS No.</th>
+              <th className="p-2 border">Therapeutic Use</th>
+            </tr>
+          </thead>
+          <tbody>
+            {products.map(([name, cas, use], i) => (
+              <tr key={i} className="even:bg-gray-100">
+                <td className="p-2 border">{name}</td>
+                <td className="p-2 border">{cas}</td>
+                <td className="p-2 border">{use}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </main>
 
-      <footer className="bg-[#2d2daa] text-white text-center py-6">
+      <footer className="text-center bg-[#2d2daa] text-white py-4 mt-10">
         &copy; 2025 Religence Pharmaceuticals Pvt. Ltd. All rights reserved.
       </footer>
     </div>
   );
 }
+
